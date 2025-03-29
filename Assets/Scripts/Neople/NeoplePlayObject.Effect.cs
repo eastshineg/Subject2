@@ -52,14 +52,19 @@ namespace Neople
 				if (_increseSpeedeEffect.IsDirty == true)
 				{
 					_blackboard.Stat.Speed.Reset();
+					Debug.Log("effect, _increseSpeedeEffect prev speed : " + _blackboard.Stat.Speed.Speed);
 					_blackboard.Stat.Speed.Change(_blackboard.Stat.Speed.Speed * _increseSpeedeEffect.SpeedFactor);
-					
+
+					Debug.Log("effect, _increseSpeedeEffect curr speed : " + _blackboard.Stat.Speed.Speed);
 					_increseSpeedeEffect.Clean();
 				}
 
 				if (_recoverHpEffect.IsDirty == true)
 				{
+					Debug.Log("effect, _recoverHpEffect prev HP : " + _blackboard.Stat.HP.Curr);
 					_blackboard.Stat.HP.Change(_blackboard.Stat.HP.Curr + _recoverHpEffect.HP);
+					
+					Debug.Log("effect, _recoverHpEffect HP : " + _blackboard.Stat.HP.Curr);
 					_recoverHpEffect.Clean();
 				}
 			}

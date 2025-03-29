@@ -90,7 +90,7 @@ namespace Neople
 			var playerBlackBoard = PlayerBoard;
 			playerBlackBoard.Clear();
 			playerBlackBoard.Stat.Speed.Reset();
-			playerBlackBoard.Stat.HP.ChangeMax(100);
+			playerBlackBoard.Stat.HP.ChangeMax(200);
 			playerBlackBoard.Stat.HP.Change(100);
 			
 			_effService.ChangeBlackBoard(PlayerBoard);

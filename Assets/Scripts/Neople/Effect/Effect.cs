@@ -23,6 +23,8 @@ namespace Neople.Effect
 		
 		public void Apply(IEffectData data)
 		{
+			Debug.Log("effect data, " + data.EffectType);
+			
 			if (data.IsValid() == false)
 			{
 				Debug.LogError("[IncreseSpeedeEffect] invalid effect source");
@@ -55,9 +57,8 @@ namespace Neople.Effect
 			{
 				_currDuration = 0f;
 				_currFactor = 0f;
+				_isDirty = true;
 			}
-			
-			_isDirty = true;
 		}
 	}
 	
@@ -71,6 +72,8 @@ namespace Neople.Effect
 		public int HP { get; private set; } = 20;
 		public void Apply(IEffectData data)
 		{
+			Debug.Log("effect data, " + data.EffectType);
+			
 			if(data is not Source.RecoverHPSouce recoverHPSouce)
 			{
 				Debug.LogError("[RecoverHPEffect] invalid type");

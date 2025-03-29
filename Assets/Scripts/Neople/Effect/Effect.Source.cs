@@ -4,6 +4,12 @@ namespace Neople.Effect.Source
 {
 	public class IncreseSpeedData : IEffectData
 	{
+		public IncreseSpeedData(float factor, float duration)
+		{
+			_factor = factor;
+			_duration = duration;
+		}
+		
 		public EnumEffect EffectType => EnumEffect.IncreseSpeed;
 		
 		float _factor = 1f;
@@ -19,6 +25,11 @@ namespace Neople.Effect.Source
 	
 	public class RecoverHPSouce : IEffectData
 	{
+		public RecoverHPSouce(int hp)
+		{
+			_hp = hp;
+		}
+		
 		public EnumEffect EffectType => EnumEffect.RecoverHP;
 		
 		int _hp = 0;
