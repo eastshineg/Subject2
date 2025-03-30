@@ -10,9 +10,16 @@ Summary
 과제
 =
 
+- **세부설명**
+  - PlayerObject에서 ApplyEffect를 구현
+  - ApplyEffect의 parameter로 IEffectData로 인터페이스로 변경 
+  - type 1, 2는 IncreaseeSpeedData, RecoveryHPData로 클래스로 구현하고,
+    - 세부 동작은 IncreaseSpeedEffect, RevoveryHPEffect에서 실제 데이터 설정및 상태 변경을 할 수 있는 상태를 제공하는 기능을 가진 세부구현으로 분리.
+  - layerObject내부에서 동작하는 세부 클래스로 EffectService내부에서 effect에 의한 상태 변화를 실제로 반영 (ResetSpeed기능도 이부분에서 처리)  
+
 - **플레이**
   - Assets/Scene의 subject.scene을 open한다음 play
-  - 과제 수행 진입점은 GameSupervisor의 Play()
+  - 과제 수행 진입점은 GameSupervisor의 Play()  
 
 - **GameSupervisor**
   - Singleton으로 작성
