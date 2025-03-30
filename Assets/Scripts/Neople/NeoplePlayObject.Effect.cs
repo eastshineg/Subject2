@@ -2,6 +2,8 @@
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
+using System.Collections.Generic;
+
 namespace Neople
 {
 	public partial class NeoplePlayObject
@@ -13,9 +15,28 @@ namespace Neople
 			IncreseSpeedeEffect _increseSpeedeEffect = new();
 			RecoverHPEffect _recoverHpEffect = new();
 			
+			Dictionary<Effect.EnumEffect, IEffect> _dictEffects = new();
+			List<IUpdateEffect> _updateEffects = new();
+			
 			internal void ChangeBlackBoard(PlayerBlackBoard blackboard)
 			{
 				_blackboard = blackboard;
+
+				_dictEffects.Clear();
+				_updateEffects.Clear();
+
+				_dictEffects.Add(_increseSpeedeEffect.EffectType, _increseSpeedeEffect);
+				_dictEffects.Add(_recoverHpEffect.EffectType, _recoverHpEffect);
+
+				foreach (var eff in _dictEffects.Values)
+				{
+					if (eff is not IUpdateEffect updateEffect)
+					{
+						continue;
+					}
+					
+					_updateEffects.Add(updateEffect);
+				}
 			}
 
 			internal void ApplyEffect(IEffectData effectData)
@@ -24,22 +45,18 @@ namespace Neople
 				{
 					return;
 				}
-				
-				switch (effectData.EffectType)
+
+				if (_dictEffects.TryGetValue(effectData.EffectType, out var effect) == false)
 				{
-					case EnumEffect.IncreseSpeed:
-						{
-							_increseSpeedeEffect.Apply(effectData);
-						}
-						break;
-					case EnumEffect.RecoverHP:
-						{
-							_recoverHpEffect.Apply(effectData);
-						}
-						break;
+					Debug.LogError($"{effectData.EffectType} not found");
+					return;
 				}
 
-				apply();
+				effect.Apply(effectData);
+				if (effect.IsDirty == true)
+				{
+					apply();	
+				}
 			}
 
 			void apply()
@@ -71,9 +88,25 @@ namespace Neople
 			
 			internal void Update()
 			{
-				_increseSpeedeEffect.Update();
+				var isDirty = false;
+				foreach (var eff in _updateEffects)
+				{
+					eff.Update();
+				}
+
+				foreach (var eff in _dictEffects.Values)
+				{
+					if (isDirty == false)
+					{
+						isDirty = eff.IsDirty;
+						if (isDirty == true)
+						{
+							break;
+						}
+					}
+				}
 				
-				if (_increseSpeedeEffect.IsDirty == true)
+				if (isDirty == true)
 				{
 					apply();
 				}
