@@ -37,7 +37,7 @@ Summary
   - Effect의 인터페이스
     - Effect는 다양한 형태로 생명주기를 가질 수 있기 때문에 abstract혹은 base 클래스로 구현하기보다는 최종적으로 결정된 정보를 반영하는 형태의 인터페이스가 더 적절한 형태로 구현
     - 즉발성도 있고, Update를 통해 시간 혹은 다수의 condition을가지고 효과적용을 다르게 할 수 있기 때문에 interface를 구현하여 확장하는 형태로 구현하는게 더 유연한 구조를 가질 수 있다고 판단되어 이를 상속받는 형태로 세부구현 진행
-      - **IUpdateEffect**
-        - update가 필요한 경우는 IUpdateEffect를 상속받도록 수정
-        - effect가 update를 구현하는 상황도 피하고 이를 의미없이 호출하는 상황도 피할 수 있게 하는것이 목적(ex, - 즉발성 effect의 경우는 위와같은 update가 필요없음)
-        
+    - **IUpdateEffect**
+      - update가 필요한 경우는 IUpdateEffect를 상속받도록 수정
+      - effect가 update를 구현하는 상황도 피하고 이를 의미없이 호출하는 상황도 피할 수 있게 하는것이 목적(ex, - 즉발성 effect의 경우는 위와같은 update가 필요없음)
+      
