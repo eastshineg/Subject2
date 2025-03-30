@@ -12,9 +12,6 @@ namespace Neople
 		{
 			PlayerBlackBoard _blackboard = null;
 			
-			IncreseSpeedeEffect _increseSpeedeEffect = new();
-			RecoverHPEffect _recoverHpEffect = new();
-			
 			Dictionary<Effect.EnumEffect, IEffect> _dictEffects = new();
 			List<IUpdateEffect> _updateEffects = new();
 			
@@ -25,8 +22,15 @@ namespace Neople
 				_dictEffects.Clear();
 				_updateEffects.Clear();
 
-				_dictEffects.Add(_increseSpeedeEffect.EffectType, _increseSpeedeEffect);
-				_dictEffects.Add(_recoverHpEffect.EffectType, _recoverHpEffect);
+				{
+					var eff = new IncreseSpeedeEffect();
+					_dictEffects.Add(eff.EffectType, eff);
+				}
+
+				{
+					var eff = new RecoverHPEffect();
+					_dictEffects.Add(eff.EffectType, eff);	
+				}
 
 				foreach (var eff in _dictEffects.Values)
 				{
@@ -65,24 +69,50 @@ namespace Neople
 				{
 					return;
 				}
-				
-				if (_increseSpeedeEffect.IsDirty == true)
-				{
-					_blackboard.Stat.Speed.Reset();
-					Debug.Log("effect, _increseSpeedeEffect prev speed : " + _blackboard.Stat.Speed.Speed);
-					_blackboard.Stat.Speed.Change(_blackboard.Stat.Speed.Speed * _increseSpeedeEffect.SpeedFactor);
 
-					Debug.Log("effect, _increseSpeedeEffect curr speed : " + _blackboard.Stat.Speed.Speed);
-					_increseSpeedeEffect.Clean();
-				}
-
-				if (_recoverHpEffect.IsDirty == true)
+				foreach (var eff in _dictEffects.Values)
 				{
-					Debug.Log("effect, _recoverHpEffect prev HP : " + _blackboard.Stat.HP.Curr);
-					_blackboard.Stat.HP.Change(_blackboard.Stat.HP.Curr + _recoverHpEffect.HP);
+					if (eff.IsDirty == false)
+					{
+						continue;
+					}
+
+					switch (eff.EffectType)
+					{
+						case EnumEffect.IncreseSpeed:
+							{
+								if (eff is IncreseSpeedeEffect castEff)
+								{
+									_blackboard.Stat.Speed.Reset();
+									if (castEff.Duration > 0f)
+									{
+										Debug.Log($"effect, _increseSpeedeEffect prev speed : {_blackboard.Stat.Speed.Speed}, duration : {castEff.Duration} ");
+									}
+									else
+									{
+										Debug.Log("effect, _increseSpeedeEffect prev speed : " + _blackboard.Stat.Speed.Speed);
+									}
 					
-					Debug.Log("effect, _recoverHpEffect HP : " + _blackboard.Stat.HP.Curr);
-					_recoverHpEffect.Clean();
+									_blackboard.Stat.Speed.Change(_blackboard.Stat.Speed.Speed * castEff.SpeedFactor);
+
+									Debug.Log("effect, _increseSpeedeEffect curr speed : " + _blackboard.Stat.Speed.Speed);
+									castEff.Clean();				
+								}
+							}
+							break;
+						case EnumEffect.RecoverHP:
+							{
+								if (eff is RecoverHPEffect castEff)
+								{
+									Debug.Log("effect, _recoverHpEffect prev HP : " + _blackboard.Stat.HP.Curr);
+									_blackboard.Stat.HP.Change(_blackboard.Stat.HP.Curr + castEff.HP);
+					
+									Debug.Log("effect, _recoverHpEffect HP : " + _blackboard.Stat.HP.Curr);
+									castEff.Clean();
+								}
+							}
+							break;
+					}
 				}
 			}
 			

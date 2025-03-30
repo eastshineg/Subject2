@@ -20,6 +20,7 @@ namespace Neople.Effect
 		float _currDuration = 0f;
 		float _currFactor = 1f;
 		public float SpeedFactor => _currFactor;
+		public float Duration => _currDuration;
 		
 		public void Apply(IEffectData data)
 		{
