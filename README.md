@@ -2,6 +2,11 @@
 =
 unity 2022.3.52f
 
+Summary
+=
+![image](https://github.com/user-attachments/assets/be3c8549-1415-4a3f-a475-7e068ff42252)
+
+
 과제
 =
 
