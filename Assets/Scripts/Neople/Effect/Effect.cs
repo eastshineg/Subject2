@@ -55,10 +55,15 @@ namespace Neople.Effect
 
 			if (_currDuration <= 0f)
 			{
-				_currDuration = 0f;
-				_currFactor = 0f;
+				reset();
 				_isDirty = true;
 			}
+		}
+
+		void reset()
+		{
+			_currDuration = 0f;
+			_currFactor = 1f;
 		}
 	}
 	
