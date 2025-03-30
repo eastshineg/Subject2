@@ -1,5 +1,5 @@
 using Neople;
-using Neople.Effect.Source;
+using Neople.Effect.Data;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -27,7 +27,7 @@ public class GameSupervisor : Singleton<GameSupervisor>
 
                if (item1 is NeopleItemObject neopleItemObject)
                {
-                    neopleItemObject.SetEffect(new RecoverHPSouce(20));
+                    neopleItemObject.SetEffect(new RecoverHPData(20));
                     player.ApplyEffect(neopleItemObject.CachedBlackBoard.EffectData);
                }
           }

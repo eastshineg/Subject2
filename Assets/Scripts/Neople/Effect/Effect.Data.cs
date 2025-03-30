@@ -1,6 +1,6 @@
 ﻿using Unity.VisualScripting.FullSerializer.Internal.Converters;
 using UnityEngine;
-namespace Neople.Effect.Source
+namespace Neople.Effect.Data
 {
 	public class IncreseSpeedData : IEffectData
 	{
@@ -23,9 +23,9 @@ namespace Neople.Effect.Source
 		}
 	}
 	
-	public class RecoverHPSouce : IEffectData
+	public class RecoverHPData : IEffectData
 	{
-		public RecoverHPSouce(int hp)
+		public RecoverHPData(int hp)
 		{
 			_hp = hp;
 		}
