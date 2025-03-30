@@ -13,7 +13,11 @@ Summary
 - **플레이**
   - Assets/Scene의 subject.scene을 open한다음 play
   - 과제 수행 진입점은 GameSupervisor의 Play()
-  
+
+- **GameSupervisor**
+  - Singleton으로 작성
+  - play 환경 기본 구축을 위한 시작점
+  - item object는 effect 정보를 가지는 가상의 시나리오를 설정하고 이를 player object에 적용하는 로직을 구성
 - **NeopleObject**
   - 서로 상호작용 및 제어를 위한 기본 class
   - **NeoplePlayerObject**
@@ -27,10 +31,6 @@ Summary
         - 실제로 speed와 hp변경에 되한 세부 구현은 service로직에서 수행        - 
   - **NeopleItemObject**
     - Player object에 영향을 주기 위한 정보를 가지고 있는 상세 class
-- **GameSupervisor**
-  - Singleton으로 작성
-  - play 환경 기본 구축을 위한 시작점
-  - item object는 effect 정보를 가지는 가상의 시나리오를 설정하고 이를 player object에 적용하는 로직을 구성
 - **ObjectManager**
   - NeopleObject의 생성 및 파괴를 관리하는 클래스
 - **IEffect**
