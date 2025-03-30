@@ -22,13 +22,13 @@ Summary
   - 서로 상호작용 및 제어를 위한 기본 class
   - **NeoplePlayerObject**
     - 회부에서 생성된 data형태의 effect정보를 받아서 effect를 실제로 적용하는 프로세스를 가지는 object 상세 class
-      - **Stat**
-        - hp, speed와 같은 데이터를 초기화 혹은 편화를 위한 처리를 일관성 있게 수행하기 위함.
-        - IStat interface 통해 stat의 일관성 있게 필요한 부분을 정의해서 차후에 stat이 추가될때마다 stat의 초기화 및 변경에 대한 일관성 있는 함수를 제공해서 실제 세부 구현이 가능하게 처리
-        - stat중에 reset통해 orignal값으로 변경되어야 하는 stat이 있고 일관되게 다른 값으로 변경되어야 하거나 reset을 통해 원래값을 복원하면 안되는 특성이 있기 때문에 IResetableStat 통해 reset 가능한 stat을 별개로 지정 및 복원처리가 가능하도록 세부 구현을 유도.
-      - **EffectService**
-        - effect의 효과를 stat에 실제 반영하기 위해 서로다른 세부 domain이 혼합되어 구현이 필요한 부분이 존재하기 때문에 service로 정의 후 세부구현 작성
-        - 실제로 speed와 hp변경에 되한 세부 구현은 service로직에서 수행        - 
+    - **Stat**
+      - hp, speed와 같은 데이터를 초기화 혹은 편화를 위한 처리를 일관성 있게 수행하기 위함.
+      - IStat interface 통해 stat의 일관성 있게 필요한 부분을 정의해서 차후에 stat이 추가될때마다 stat의 초기화 및 변경에 대한 일관성 있는 함수를 제공해서 실제 세부 구현이 가능하게 처리
+      - stat중에 reset통해 orignal값으로 변경되어야 하는 stat이 있고 일관되게 다른 값으로 변경되어야 하거나 reset을 통해 원래값을 복원하면 안되는 특성이 있기 때문에 IResetableStat 통해 reset 가능한 stat을 별개로 지정 및 복원처리가 가능하도록 세부 구현을 유도.
+    - **EffectService**
+      - effect의 효과를 stat에 실제 반영하기 위해 서로다른 세부 domain이 혼합되어 구현이 필요한 부분이 존재하기 때문에 service로 정의 후 세부구현 작성
+      - 실제로 speed와 hp변경에 되한 세부 구현은 service로직에서 수행        - 
   - **NeopleItemObject**
     - Player object에 영향을 주기 위한 정보를 가지고 있는 상세 class
 - **ObjectManager**
