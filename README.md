@@ -4,7 +4,7 @@ unity 2022.3.52f
 
 Summary
 =
-![image](https://github.com/user-attachments/assets/be3c8549-1415-4a3f-a475-7e068ff42252)
+![image](https://github.com/user-attachments/assets/1351539d-8812-4aab-b4e1-b36cd81390e3)
 
 
 과제
